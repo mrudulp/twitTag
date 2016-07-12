@@ -29,3 +29,7 @@
 * Complete.
 
 ## Desired Further Enhancement:
+
+## Notes:
+* Icon downloaded from (http://www.myiconfinder.com/uploads/iconsets/624dc72b6deef6abddf29031c1ac7224.png)
+* Gif created with (http://www.ezgif.com)
