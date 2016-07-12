@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TweetWithoutImgTableViewCell: UITableViewCell {
+class TweetTableViewCell: UITableViewCell {
 
     @IBOutlet weak var userImage: UIImageView!
     
@@ -44,15 +44,58 @@ class TweetWithoutImgTableViewCell: UITableViewCell {
             self.tweetDetailText.attributedText = attributedTweetText
             
             self.tweetUserName.text = "\(tweet.user)"
+        
+        fetchProfileImage()
+        formatDateString()
+        fetchMediaImage()
+        }
+        
+    }
+    
+    func fetchMediaImage(){
+        if let mediaUrl = tweet!.media.first?.url{
+            let qos = QOS_CLASS_USER_INTERACTIVE
+            let backgroundQ = dispatch_get_global_queue(qos, 0)
+            dispatch_async(backgroundQ,{
+                if let imageData = NSData(contentsOfURL: mediaUrl){
+                    dispatch_async(dispatch_get_main_queue()){
+                        if let image = UIImage(data:imageData){
+                            self.tweetImage?.image = image
+                        }
+                    }
+                }
+            })
         }
     }
     
+    func fetchProfileImage(){
+        if let profileImageUrl = tweet!.user.profileImageURL{
+            let qos = QOS_CLASS_USER_INTERACTIVE
+            let backgroundQ = dispatch_get_global_queue(qos,0)
+            dispatch_async(backgroundQ,{
+                if let imageData = NSData(contentsOfURL: profileImageUrl)
+                {
+                    dispatch_async(dispatch_get_main_queue()){
+                        if let image = UIImage(data:imageData){
+                            self.userImage?.image = image
+                        }
+                    }
+                }
+            })
+        }
+    }
+    
+    func formatDateString(){
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = NSDateFormatterStyle.ShortStyle
+        self.tweetCreatedAt?.text = formatter.stringFromDate(tweet!.created)
+    }
     private func resetUI(){
-        self.userImage = nil
+        self.userImage?.image = nil
         self.tweetUserName?.text = nil
         self.tweetCreatedAt?.text = nil
         self.tweetDetailText?.text = nil
-        self.tweetImage = nil
+//        self.tweetImage?.image = nil
     }
 //    
 //    override func awakeFromNib() {

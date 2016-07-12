@@ -8,11 +8,80 @@
 
 import UIKit
 
-class TweetTableViewController: UITableViewController {
+class TweetTableViewController: UITableViewController, UITextFieldDelegate {
 
+    var tweets = [[Tweet]]()
+    @IBOutlet weak var fetchText: UITextField!{
+        didSet{
+            fetchText.delegate = self
+            fetchText.text = searchText
+        }
+    }
+    
+    var searchText:String? = "#winter"{
+        didSet{
+            self.lastReq = nil
+            //self.fetchText.text = searchText
+            tweets.removeAll()
+            tableView.reloadData()
+            refresh()
+        }
+    }
+    var lastReq:TwitterRequest?
+    
+    var nextSuccessfulReq:TwitterRequest?{
+        if lastReq == nil{
+            if searchText != nil {
+                return TwitterRequest(search:searchText!,count:100)
+            } else{
+                return nil
+            }
+        } else {
+           return lastReq!.requestForNewer
+        }
+    }
+    
+    @IBAction func refresh(sender:UIRefreshControl?){
+        if searchText != nil{
+            if let request = nextSuccessfulReq{
+                request.fetchTweets({ (newTweets) -> Void in
+                    //Successful Fetch, dispatch to main thread for rendering
+                    dispatch_async(dispatch_get_main_queue(), { 
+                        if newTweets.count > 0 {
+                            self.lastReq = request
+                            self.tweets.insert(newTweets, atIndex: 0)
+                            self.tableView.reloadData()
+                        }
+                        sender?.endRefreshing()
+                    })
+                })
+
+            }
+        } else {
+            sender?.endRefreshing()
+        }
+    }
+    
+    func refresh(){
+        if refreshControl != nil{
+            refreshControl?.beginRefreshing()
+        }
+        refresh(refreshControl)
+    }
+    private struct Storyboard{
+        static let TweetCellIWithoutImage = "tweetCellIWithoutImage"
+        static let TweetCellIWithImage = "tweetCellIWithImage"
+    }
+    // MARK: - View Controller LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        //Change status bar of navigation controller
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        //To automatically resize the row when image is present and not present
+        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
+        refresh()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -29,67 +98,38 @@ class TweetTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return tweets.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return tweets[section].count
     }
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
+        
         // Configure the cell...
-
-        return cell
+        let tweet = tweets[indexPath.section][indexPath.row]
+        if tweet.media.first?.url != nil{
+            let cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.TweetCellIWithImage, forIndexPath: indexPath) as! TweetTableViewCell
+            cell.tweet = tweet
+            cell.setNeedsDisplay()
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.TweetCellIWithoutImage, forIndexPath: indexPath) as! TweetTableViewCell
+            cell.tweet = tweet
+            return cell
+        }
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
+    
+    //MARK: SearchField Delegate
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == fetchText{
+            textField.resignFirstResponder()
+            searchText = textField.text
+        }
         return true
     }
-    */
+ 
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}
+  }
