@@ -16,7 +16,7 @@ class TweetTableViewCell: UITableViewCell {
     
     @IBOutlet weak var tweetCreatedAt: UILabel!
     
-    @IBOutlet weak var tweetDetailText: UILabel!
+    @IBOutlet weak var tweetDetailText: UITextView!
     
     @IBOutlet weak var tweetImage: UIImageView!
     
@@ -28,6 +28,7 @@ class TweetTableViewCell: UITableViewCell {
     
     private func updateUI(){
         self.resetUI()
+       // addTapRecogniser()
         if let tweet = self.tweet{
             var tweetText:String = tweet.text
             if self.tweetDetailText?.text != nil {
@@ -39,6 +40,7 @@ class TweetTableViewCell: UITableViewCell {
             let attributedTweetText = NSMutableAttributedString(string: tweetText)
             attributedTweetText.changeKeywordsColor(tweet.hashtags,color: indexedKeywordColor)
             attributedTweetText.changeKeywordsColor(tweet.urls, color: indexedKeywordColor)
+            attributedTweetText.mutateKeywordsToHyperlinks(tweet.urls)
             attributedTweetText.changeKeywordsColor(tweet.userMentions, color: indexedKeywordColor)
             
             self.tweetDetailText.attributedText = attributedTweetText
@@ -95,8 +97,8 @@ class TweetTableViewCell: UITableViewCell {
         self.tweetUserName?.text = nil
         self.tweetCreatedAt?.text = nil
         self.tweetDetailText?.text = nil
-//        self.tweetImage?.image = nil
     }
+    
 //    
 //    override func awakeFromNib() {
 //        super.awakeFromNib()
@@ -121,4 +123,14 @@ private extension NSMutableAttributedString
             addAttribute(NSForegroundColorAttributeName, value: color, range: keyword.nsrange)
         }
     }
+    
+    func mutateKeywordsToHyperlinks(keywords:[Tweet.IndexedKeyword])
+    {
+        for keyword in keywords{
+            if let url:NSURL = NSURL.init(string: keyword.keyword){
+            addAttribute(NSLinkAttributeName,value: url, range: keyword.nsrange)
+            }
+        }
+    }
+    
 }

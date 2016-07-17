@@ -15,11 +15,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweetCellIWithoutImage" rowHeight="218" id="Ult-VN-vFG" customClass="TweetTableViewCell" customModule="twitMe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="218"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweetCellIWithoutImage" rowHeight="182" id="Ult-VN-vFG" customClass="TweetTableViewCell" customModule="twitMe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="182"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ult-VN-vFG" id="PdR-m8-Oda">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="217"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="181"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFB-eD-xcI" userLabel="title">
@@ -49,18 +49,6 @@
                                             </attributedString>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvN-0g-2cx" userLabel="detail">
-                                            <rect key="frame" x="10" y="76" width="572" height="127"/>
-                                            <attributedString key="attributedText">
-                                                <fragment content="Label">
-                                                    <attributes>
-                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <font key="NSFont" size="13" name="AvenirNext-Medium"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QcX-8s-Fuf">
                                             <rect key="frame" x="8" y="18" width="48" height="48"/>
                                             <constraints>
@@ -73,46 +61,53 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bOc-nT-tcc" userLabel="detailText">
+                                            <rect key="frame" x="8" y="74" width="584" height="100"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <attributedString key="attributedText">
+                                                <fragment>
+                                                    <string key="content">No Text asadsadasdsadadadadadadsadadadadsaNo Text asadsadasdsadadadadadadsadadadadsaNo Text asadsadasdsadadadadadadsadadadadsaNo Text asadsadasdsadadadadadadsadadadadsaNo Text asadsadasdsadadadadadadsadadadadsa</string>
+                                                    <attributes>
+                                                        <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                        </textView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="pvN-0g-2cx" firstAttribute="top" secondItem="QcX-8s-Fuf" secondAttribute="bottom" constant="10" id="171-68-VPZ"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="pvN-0g-2cx" secondAttribute="bottom" constant="6" id="8IY-88-kq9"/>
-                                        <constraint firstItem="pvN-0g-2cx" firstAttribute="leading" secondItem="PdR-m8-Oda" secondAttribute="leadingMargin" constant="2" id="9PJ-aN-T03"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="cFB-eD-xcI" secondAttribute="trailing" id="CWa-ed-u7O"/>
                                         <constraint firstItem="yWt-XH-nj8" firstAttribute="top" secondItem="cFB-eD-xcI" secondAttribute="bottom" constant="8" id="Eui-Zm-KHT"/>
+                                        <constraint firstItem="bOc-nT-tcc" firstAttribute="leading" secondItem="PdR-m8-Oda" secondAttribute="leadingMargin" id="LLN-DM-S6Y"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="bOc-nT-tcc" secondAttribute="bottom" constant="-1" id="Oz6-3P-ooE"/>
                                         <constraint firstItem="cFB-eD-xcI" firstAttribute="top" secondItem="PdR-m8-Oda" secondAttribute="top" constant="18" id="TnE-xM-pxF"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="bOc-nT-tcc" secondAttribute="trailing" id="aQ4-87-sax"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="yWt-XH-nj8" secondAttribute="trailing" id="d8S-4g-Adw"/>
                                         <constraint firstItem="QcX-8s-Fuf" firstAttribute="top" secondItem="PdR-m8-Oda" secondAttribute="top" constant="18" id="iXn-tB-wnh"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="pvN-0g-2cx" secondAttribute="trailing" constant="10" id="kgx-8X-C34"/>
                                         <constraint firstItem="QcX-8s-Fuf" firstAttribute="leading" secondItem="PdR-m8-Oda" secondAttribute="leadingMargin" id="ocY-dQ-q3b"/>
                                         <constraint firstItem="yWt-XH-nj8" firstAttribute="leading" secondItem="QcX-8s-Fuf" secondAttribute="trailing" constant="8" id="s51-nQ-wfB"/>
                                         <constraint firstItem="cFB-eD-xcI" firstAttribute="leading" secondItem="QcX-8s-Fuf" secondAttribute="trailing" constant="8" id="yF3-4j-fU3"/>
+                                        <constraint firstItem="bOc-nT-tcc" firstAttribute="top" secondItem="QcX-8s-Fuf" secondAttribute="bottom" constant="8" id="yoh-BV-fOV"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="pvN-0g-2cx" secondAttribute="bottom" constant="16" id="sin-yp-Cgy"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="sin-yp-Cgy"/>
-                                    </mask>
-                                </variation>
                                 <connections>
                                     <outlet property="tweetCreatedAt" destination="yWt-XH-nj8" id="eWr-cL-SYR"/>
-                                    <outlet property="tweetDetailText" destination="pvN-0g-2cx" id="16u-ge-KtH"/>
+                                    <outlet property="tweetDetailText" destination="bOc-nT-tcc" id="yCw-ie-Zce"/>
                                     <outlet property="tweetUserName" destination="cFB-eD-xcI" id="emB-e6-HhI"/>
                                     <outlet property="userImage" destination="QcX-8s-Fuf" id="rlA-pe-URH"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweetCellIWithImage" rowHeight="231" id="6LH-pT-8Mn" customClass="TweetTableViewCell" customModule="twitMe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="310" width="600" height="231"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweetCellIWithImage" rowHeight="303" id="6LH-pT-8Mn" customClass="TweetTableViewCell" customModule="twitMe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="274" width="600" height="303"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6LH-pT-8Mn" id="WKb-5M-azE">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="230"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="302"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nhT-4B-62t" userLabel="wUserImage">
-                                            <rect key="frame" x="4" y="18" width="48" height="48"/>
+                                            <rect key="frame" x="4" y="5" width="48" height="48"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="48" id="YZK-5I-57f"/>
                                                 <constraint firstAttribute="height" constant="48" id="ubQ-2h-dQx"/>
@@ -124,7 +119,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWr-gl-6bh" userLabel="wTitle">
-                                            <rect key="frame" x="64" y="18" width="528" height="18"/>
+                                            <rect key="frame" x="64" y="10" width="528" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="18" id="Rrf-ru-kWw"/>
                                             </constraints>
@@ -139,7 +134,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kr0-8l-pCV" userLabel="wSubtitle">
-                                            <rect key="frame" x="64" y="44" width="528" height="17"/>
+                                            <rect key="frame" x="64" y="29" width="528" height="17"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="Label">
                                                     <attributes>
@@ -150,46 +145,88 @@
                                             </attributedString>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKe-s9-lkL" userLabel="wDetail">
-                                            <rect key="frame" x="12" y="70" width="580" height="4"/>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dKV-zA-ekq" userLabel="wDetailText">
+                                            <rect key="frame" x="0.0" y="56" width="600" height="100"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <attributedString key="attributedText">
-                                                <fragment content="Label">
+                                                <fragment>
+                                                    <string key="content">No Text asadsadasdsadadadadadadsadadadadsaNo Text asadsadasdsadadadadadadsadadadadsaNo Text asadsadasdsadadadadadadsadadadadsaNo Text asadsadasdsadadadadadadsadadadadsaNo Text asadsadasdsadadadadadadsadadadadsa</string>
                                                     <attributes>
-                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <font key="NSFont" size="15" name="AvenirNext-Medium"/>
+                                                        <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                            <tabStops>
+                                                                <textTab alignment="left" location="28">
+                                                                    <options/>
+                                                                </textTab>
+                                                                <textTab alignment="left" location="56">
+                                                                    <options/>
+                                                                </textTab>
+                                                                <textTab alignment="left" location="84">
+                                                                    <options/>
+                                                                </textTab>
+                                                                <textTab alignment="left" location="112">
+                                                                    <options/>
+                                                                </textTab>
+                                                                <textTab alignment="left" location="140">
+                                                                    <options/>
+                                                                </textTab>
+                                                                <textTab alignment="left" location="168">
+                                                                    <options/>
+                                                                </textTab>
+                                                                <textTab alignment="left" location="196">
+                                                                    <options/>
+                                                                </textTab>
+                                                                <textTab alignment="left" location="224">
+                                                                    <options/>
+                                                                </textTab>
+                                                                <textTab alignment="left" location="252">
+                                                                    <options/>
+                                                                </textTab>
+                                                                <textTab alignment="left" location="280">
+                                                                    <options/>
+                                                                </textTab>
+                                                                <textTab alignment="left" location="308">
+                                                                    <options/>
+                                                                </textTab>
+                                                                <textTab alignment="left" location="336">
+                                                                    <options/>
+                                                                </textTab>
+                                                            </tabStops>
+                                                        </paragraphStyle>
                                                     </attributes>
                                                 </fragment>
                                             </attributedString>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                        </textView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twitter_white" translatesAutoresizingMaskIntoConstraints="NO" id="e1G-Vw-GIc" userLabel="wAvatarImage">
-                                            <rect key="frame" x="8" y="79" width="584" height="130"/>
+                                            <rect key="frame" x="8" y="174" width="584" height="120"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="130" id="u8x-nz-I8O"/>
+                                                <constraint firstAttribute="height" constant="120" id="u8x-nz-I8O"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="e1G-Vw-GIc" firstAttribute="top" secondItem="dKV-zA-ekq" secondAttribute="bottom" constant="18" id="1Xr-RT-v2h"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="e1G-Vw-GIc" secondAttribute="leading" id="1lg-Eh-LZd"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="e1G-Vw-GIc" secondAttribute="bottom" constant="13" id="1p4-9O-xU2"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="e1G-Vw-GIc" secondAttribute="bottom" id="1p4-9O-xU2"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="e1G-Vw-GIc" secondAttribute="trailing" id="2Jm-mQ-ZQR"/>
                                         <constraint firstItem="MWr-gl-6bh" firstAttribute="leading" secondItem="nhT-4B-62t" secondAttribute="trailing" constant="12" id="8Sz-vU-9PI"/>
-                                        <constraint firstItem="e1G-Vw-GIc" firstAttribute="top" secondItem="qKe-s9-lkL" secondAttribute="bottom" constant="5" id="AhS-JV-bUb"/>
-                                        <constraint firstItem="nhT-4B-62t" firstAttribute="top" secondItem="WKb-5M-azE" secondAttribute="top" constant="18" id="BES-BU-M3k"/>
-                                        <constraint firstItem="qKe-s9-lkL" firstAttribute="top" secondItem="nhT-4B-62t" secondAttribute="bottom" constant="4" id="D5L-Kb-oHu"/>
+                                        <constraint firstItem="nhT-4B-62t" firstAttribute="top" secondItem="WKb-5M-azE" secondAttribute="top" constant="5" id="BES-BU-M3k"/>
+                                        <constraint firstAttribute="trailing" secondItem="dKV-zA-ekq" secondAttribute="trailing" id="DLt-7b-aKM"/>
                                         <constraint firstItem="kr0-8l-pCV" firstAttribute="leading" secondItem="nhT-4B-62t" secondAttribute="trailing" constant="12" id="K9F-3Q-pNt"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="qKe-s9-lkL" secondAttribute="trailing" id="NxL-Qo-NOh"/>
-                                        <constraint firstItem="qKe-s9-lkL" firstAttribute="leading" secondItem="WKb-5M-azE" secondAttribute="leadingMargin" constant="4" id="NzC-Aa-0kR"/>
-                                        <constraint firstItem="kr0-8l-pCV" firstAttribute="top" secondItem="MWr-gl-6bh" secondAttribute="bottom" constant="8" symbolic="YES" id="PwJ-zJ-yZP"/>
+                                        <constraint firstItem="kr0-8l-pCV" firstAttribute="top" secondItem="MWr-gl-6bh" secondAttribute="bottom" constant="1" id="PwJ-zJ-yZP"/>
                                         <constraint firstItem="nhT-4B-62t" firstAttribute="leading" secondItem="WKb-5M-azE" secondAttribute="leading" constant="4" id="R1F-2A-IpQ"/>
-                                        <constraint firstItem="MWr-gl-6bh" firstAttribute="top" secondItem="WKb-5M-azE" secondAttribute="topMargin" constant="10" id="TYt-T6-w2U"/>
+                                        <constraint firstItem="MWr-gl-6bh" firstAttribute="top" secondItem="WKb-5M-azE" secondAttribute="topMargin" constant="2" id="TYt-T6-w2U"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="kr0-8l-pCV" secondAttribute="trailing" id="XZI-M8-ewX"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="MWr-gl-6bh" secondAttribute="trailing" id="XaO-WH-tTp"/>
+                                        <constraint firstItem="dKV-zA-ekq" firstAttribute="leading" secondItem="WKb-5M-azE" secondAttribute="leading" id="ww4-Ut-MlH"/>
+                                        <constraint firstItem="dKV-zA-ekq" firstAttribute="top" secondItem="nhT-4B-62t" secondAttribute="bottom" constant="3" id="xlZ-Pv-RhY"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="tweetCreatedAt" destination="kr0-8l-pCV" id="OZ0-Vy-2Jy"/>
-                                    <outlet property="tweetDetailText" destination="qKe-s9-lkL" id="XBq-MG-SAo"/>
+                                    <outlet property="tweetDetailText" destination="dKV-zA-ekq" id="cUv-jc-GVe"/>
                                     <outlet property="tweetImage" destination="e1G-Vw-GIc" id="cvL-tK-aev"/>
                                     <outlet property="tweetUserName" destination="MWr-gl-6bh" id="sHx-5v-ZMT"/>
                                     <outlet property="userImage" destination="nhT-4B-62t" id="1z8-B9-Yxs"/>
