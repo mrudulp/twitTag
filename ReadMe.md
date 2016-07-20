@@ -45,3 +45,4 @@
 
 # Reference
 * [UITextView & TableViews](http://candycode.io/self-sizing-uitextview-in-a-uitableview-using-auto-layout-like-reminders-app/)
+* [Clickable URL](http://stackoverflow.com/questions/21629784/how-to-make-a-clickable-link-in-an-nsattributedstring-for-a)
